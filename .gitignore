@@ -1,0 +1,10 @@
+src/.env
+*.log
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+.claude/
+.playwright-mcp/
+Technical Assignment*.pdf
