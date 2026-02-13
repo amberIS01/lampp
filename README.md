@@ -1,5 +1,7 @@
 # Mini ERP / Task Management System
 
+**Live Demo:** http://lampp.42web.io
+
 ## Tech Stack
 - **Linux** (Ubuntu 22.04)
 - **Apache** 2.4.52 / PHP Built-in Server
