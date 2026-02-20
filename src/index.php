@@ -49,6 +49,8 @@ if (str_ends_with($scriptName, '/index.php')) {
 // Security headers
 header('X-Content-Type-Options: nosniff');
 header('X-Frame-Options: DENY');
+header('Cache-Control: no-store, no-cache, must-revalidate');
+header('Pragma: no-cache');
 
 // ---------- API Routes ----------
 if (str_starts_with($uri, '/api/')) {

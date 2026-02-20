@@ -2,6 +2,8 @@
 
 **Live Demo:** http://lampp.42web.io
 
+**Demo Video:** https://drive.google.com/file/d/16uacHXbxLAkY1XP0Q73CT5PJrcVxHdjV/view?usp=sharing
+
 ## Tech Stack
 - **Linux** (Ubuntu 22.04)
 - **Apache** 2.4.52 / PHP Built-in Server

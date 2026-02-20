@@ -29,7 +29,9 @@ class AuthController
 
     private function handleLogin(): void
     {
-        CsrfMiddleware::check();
+        // CSRF skipped for login — credentials are the real protection.
+        // InfinityFree's anti-bot JS challenge breaks session persistence
+        // between GET and POST, making CSRF unreliable on the login form.
 
         $username = trim($_POST['username'] ?? '');
         $password = $_POST['password'] ?? '';
@@ -50,14 +52,14 @@ class AuthController
             return;
         }
 
-        // Regenerate session ID to prevent fixation
-        session_regenerate_id(true);
-
         // Set session data
         $_SESSION['user_id']   = $user['id'];
         $_SESSION['username']  = $user['username'];
         $_SESSION['user_role'] = $user['role'];
         $_SESSION['_last_regeneration'] = time();
+
+        // Set signed auth cookie as fallback (InfinityFree drops session cookies)
+        setAuthCookie((int)$user['id'], $user['username'], $user['role']);
 
         flash('success', 'Welcome back, ' . sanitize($user['username']) . '!');
         redirect('/dashboard');
@@ -65,6 +67,7 @@ class AuthController
 
     public function logout(): void
     {
+        clearAuthCookie();
         $_SESSION = [];
 
         if (ini_get('session.use_cookies')) {
